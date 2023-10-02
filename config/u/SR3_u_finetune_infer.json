@@ -1,0 +1,70 @@
+{
+    "name": "SR3_u_norm",
+    "phase": "val",
+    "gpu_ids": [2],
+    "path": {
+        "log": "logs",
+        "tb_logger": "tb_logger",
+        "results": "results",
+        "checkpoint": "checkpoint",
+        "resume_state":"/home/data/downscaling/downscaling_1023/DDIM/SR3_publish/experiments/SR3_u_norm_230605_103243/checkpoint/I350000_E583"
+    },
+    "data": {
+        "batch_size": 128,
+        "num_workers": 6,
+        "use_shuffle": true,
+	"height": 128
+    },
+    "model": {
+        "finetune_norm": false,
+        "unet": {
+            "in_channel": 4,  //[noisy,lr,land,mask]..
+            "out_channel": 1, // [HR].
+            "inner_channel": 64, // channel
+            "norm_groups": 32,  // group
+            "channel_multiplier": [1,1,2, 4], //64 32,16
+            "attn_res": [32,16],  // 在同样的维度下加attention.
+            "res_blocks": 1,
+            "dropout": 0.1,
+            "init_method": "kaiming"
+        },
+        "beta_schedule": {
+            "train": {
+                "schedule": "cosine",
+                "n_timestep": 1000,
+                "linear_start": 1e-6,
+		    "linear_end": 1e-3
+            },
+            "val": {
+                "schedule": "cosine",
+                "n_timestep": 1000,
+                "linear_start": 1e-6,
+                "linear_end": 1e-3
+            },
+            "test": {
+                "schedule": "cosine",
+                "n_timestep": 1000,
+                "linear_start": 1e-6,
+                "linear_end": 1e-3
+            }
+        },
+        "diffusion": {
+            "conditional": true,
+            "loss": "l2"
+        }
+    },
+    "training": {
+        "epoch_n_iter": 1000000,
+        "val_freq": 10000,//25000
+        "save_checkpoint_freq": 10000,
+        "print_freq": 2500,
+        "n_val_vis": 1,
+        "val_vis_freq": 170,//30,
+        "sample_size":33,
+        "optimizer": {
+            "type": "adamw",  // Possible types are ['adam', 'adamw']
+            "amsgrad": false,
+            "lr": 1e-4
+        }
+    }
+}
