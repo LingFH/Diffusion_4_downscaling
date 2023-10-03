@@ -1,7 +1,7 @@
 # Diffusion_4_downscaling
 
 Diffusion model base on the SR3 
-
+![image](./src.png)
 
 ## References
 
