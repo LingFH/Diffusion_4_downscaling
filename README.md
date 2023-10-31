@@ -1,6 +1,6 @@
 # Diffusion_4_downscaling
 
-Diffusion model base on the SR3 
+Diffusion Model-based Probabilistic Downscaling for Long-term East Asian climate reconstruction 
 ![image](./src.png)
 
 ## References
