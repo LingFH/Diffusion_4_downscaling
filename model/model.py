@@ -14,7 +14,7 @@ import torch.nn as nn
 from torch.optim.lr_scheduler import MultiStepLR,CosineAnnealingWarmRestarts
 import numpy as np
 from .base_model import BaseModel
-from .ema import EMA #为什么要有EMA呢
+from .ema import EMA 
 from .networks import define_network
 
 logger = logging.getLogger("base")
