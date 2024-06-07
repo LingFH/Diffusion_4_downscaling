@@ -23,7 +23,7 @@
             "inner_channel": 64, // channel
             "norm_groups": 32,  //group
             "channel_multiplier": [1,1,2, 4], //64 32,16
-            "attn_res": [32,16],  // 在同样的维度下加attention.
+            "attn_res": [32,16],  // attention.
             "res_blocks": 1,
             "dropout": 0.1,
             "init_method": "kaiming"
