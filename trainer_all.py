@@ -173,7 +173,7 @@ if __name__ == "__main__":
                         
                         logger.info(f"[{idx//configs.val_vis_freq}] Visualizing and storing some examples.")
 
-                        sr_candidates = diffusion.generate_multiple_candidates(n=configs.sample_size,ddim_steps=100,use_dpm_solver=True)
+                        sr_candidates = diffusion.generate_multiple_candidates(n=configs.sample_size,ddim_steps=100,use_dpm_solver=False)
                         
                         mean_candidate = sr_candidates.mean(dim=0)  # [B, C, H, W]
                         std_candidate = sr_candidates.std(dim=0)  # [B, C, H, W]
